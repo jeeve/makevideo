@@ -4,7 +4,7 @@ echo 'makevideo';
 
 $ffmpeg = FFMpeg\FFMpeg::create();
 
-$mov = new ffmpeg_movie('/video/video.avi');
+$mov = $ffmpeg->open('/video/video.avi');
 
 echo sprintf('<p>Duration : %.1f, bit rate : %d, frame count : %d, video codec : %s, audio codec : %s, audio channel : %s</p>',
                 $mov->getDuration(),
