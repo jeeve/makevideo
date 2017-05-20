@@ -2,7 +2,7 @@
 
 echo 'makevideo';
 
-$ffmpeg = FFMpeg\FFMpeg::create();
+use FFMpeg\FFMpeg;
 
 $mov = $ffmpeg->open('/video/video.avi');
 
