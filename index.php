@@ -4,7 +4,7 @@
 
 use FFMpeg\FFMpeg;
 
-$mov = $ffmpeg->open('/video/video.avi');
+$mov = $ffmpeg->open('video/video.avi');
 
 echo $mov->getPathfile(); 
 
