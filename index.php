@@ -18,6 +18,8 @@ echo "Starting ffmpeg...\n\n";
 echo shell_exec($shellline);
 echo "Done.\n";
 
+echo '<a href="' . $tempfile . '">fichier</a>'; 
+
 echo '<video controls="controls">';
 echo '<source src="' . $tempfile . '" type="video/mp4"/>';
 echo '</video>';
