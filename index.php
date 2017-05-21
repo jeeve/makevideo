@@ -17,6 +17,8 @@ echo "Starting ffmpeg...\n\n";
 echo shell_exec("ffmpeg -f image2 -framerate 25 -i video/E%2d.jpg -r 25 -an -vcodec mpeg4 -b 15000k $tempfile");
 echo "Done.\n";
 
-echo '<video controls src="' . $tempfile . '"></video>';
+echo '<video controls="controls">';
+echo '<source src="' . $tempfile . '" type="video/mp4"/>';
+echo '</video>';
 
 ?>
