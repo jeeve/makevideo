@@ -1,5 +1,6 @@
 <?php
 
+require('FFMpeg/FFMpeg.php');
 
 
 use FFMpeg\FFMpeg;
