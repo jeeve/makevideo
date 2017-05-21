@@ -2,7 +2,7 @@
 
 
 
-use FFMpeg\FFMpeg;
+use FFMpeg;
 
 $mov = $ffmpeg->open('video/video.avi');
 
