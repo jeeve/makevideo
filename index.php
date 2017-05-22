@@ -1,9 +1,6 @@
 <?php
 
-header('AddType video/ogg .ogv');
-header('AddType video/ogg .ogg');
-header('AddType video/mp4 .mp4');
-header('AddType video/webm .webm');
+header("Content-Type: video/mp4");
 
 $tempfile = 'tmp/timelapse.mp4';
 $shellline = "ffmpeg -f image2 -i video/E%2d.jpg -r 24 -vcodec mpeg4 -b 15000k " . $tempfile;
