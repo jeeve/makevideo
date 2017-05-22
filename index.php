@@ -1,5 +1,28 @@
 <?php
 
+function clear_dir($dir, $delete = false) {
+    $dossier = $dir;
+    $dir = opendir($dossier); 
+    while($file = readdir($dir)) { 
+        if(!in_array($file, array(".", ".."))){
+            if(is_dir("$dossier/$file")) {
+                clear_dir("$dossier/$file", true);
+            } else {
+                unlink("$dossier/$file");
+            }
+             
+             
+        }
+    } 
+    closedir($dir);
+     
+    if($delete == true) {
+        rmdir("$dossier/$file");
+    }
+}
+
+clear_dir('tmp');
+
 $dateJour = '2017-05-20';
 $horaire1 = '13:00';
 $horaire2 = '14:00';
