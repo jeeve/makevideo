@@ -1,16 +1,32 @@
 <?php
 
-$jour = "21-05-2017";
+$dateJour = "21-05-2017";
+$horaire1 = "13:00";
+$horaire2 = "13:50";
 
-$d = new DateTime('2017-05-21');
-$d->SetTime(10, 0);
+$jj = substr($dateJour, 0, 2);
+$mm = substr($dateJour, 3, 2);
+$aa = substr($dateJour, 6, 4);
 
-for ($i = 0; $i < 10; $i++) {
+$h1 = substr($horaire1, 0, 2);
+$m1 = substr($horaire1, 3, 2);
+$h2 = substr($horaire2, 0, 2);
+$m2 = substr($horaire2, 3, 2);
+
+$d = new DateTime($aa . '-' . $mm . '-' . $jj);
+$d->SetTime(intval($h1), intval($m1));
+
+$d2 = new DateTime($aa . '-' . $mm . '-' . $jj);
+$d2->SetTime(intval($h2), intval($m2));
+
+$i = 0;
+while ($d < $d2) {
 	$imgSrc = "http://imagebankleryposes.appspot.com/dispimg?date=21-05-2017&time=";	
 	$imgSrc = $imgSrc . $d->format('H') . ':' . $d->format('i');
 	
 	copy($imgSrc, "tmp/P" . sprintf('%03d', $i) . ".jpg");
 	
+	$i = $i + 1;
 	$d->add(new DateInterval('PT1M'));
 }
 
