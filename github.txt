@@ -1,1 +1,7 @@
-https://github.com/PHP-FFMpeg/PHP-FFMpeg
+buildpack ffmpeg
+https://github.com/jonathanong/heroku-buildpack-ffmpeg-latest.git
+
+mkdir tmp
+touch tmp/.keep
+git add tmp/.keep
+git commit -m "Add tmp directory to app repository."
