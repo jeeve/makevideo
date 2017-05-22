@@ -61,7 +61,7 @@ $tempfile = 'tmp/timelapse.mp4';
 //$shellline = "ffmpeg -f image2 -i tmp/P%4d.jpg -r 5 -vcodec mpeg4 -b 15000k " . $tempfile;
 $shellline = "ffmpeg -f image2 -i tmp/P%04d.jpg -r 24 -vcodec libx264 -crf 25 " . $tempfile;
 
-shell_exec($shellline);
+exec($shellline);
 /*
 echo '<a href="' . $tempfile . '">Timelapse lac de Léry-Poses</a>'; 
 */
