@@ -1,7 +1,7 @@
 <?php
 
-$tempfile = 'tmp/timelapse.mp4';
-$shellline = "ffmpeg -f image2 -i video/E%2d.jpg -r 24 -vcodec mpeg4 -b 15000k " . $tempfile;
+$tempfile = 'tmp/timelapse.mpg';
+$shellline = "ffmpeg -f image2 -i video/E%2d.jpg -r 24 " . $tempfile;
 
 exec($shellline);
 
