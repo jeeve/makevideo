@@ -1,7 +1,7 @@
 <?php
 
 set_time_limit(0);
-
+/*
 function clear_dir($dir, $delete = false) {
     $dossier = $dir;
     $dir = opendir($dossier); 
@@ -11,9 +11,7 @@ function clear_dir($dir, $delete = false) {
                 clear_dir("$dossier/$file", true);
             } else {
                 unlink("$dossier/$file");
-            }
-             
-             
+            }     
         }
     } 
     closedir($dir);
@@ -24,7 +22,7 @@ function clear_dir($dir, $delete = false) {
 }
 
 clear_dir('tmp');
-
+*/
 $dateJour = '2017-05-20';
 $horaire1 = '13:00';
 $horaire2 = '17:00';
