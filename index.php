@@ -1,37 +1,32 @@
 <?php
 
 set_time_limit(0);
-
+/*
 function suppression($dossier_traite , $extension_choisie)
 {
-// On ouvre le dossier.
 $repertoire = opendir($dossier_traite);
  
-// On lance notre boucle qui lira les fichiers un par un.
         while(false !== ($fichier = readdir($repertoire)))
         {
-        // On met le chemin du fichier dans une variable simple
         $chemin = $dossier_traite."/".$fichier;
                 
-                // Les variables qui contiennent toutes les infos nécessaires.
                 $infos = pathinfo($chemin);
                 $extension = $infos['extension'];
  
                 $age_fichier = time() - filemtime($chemin);
                 
-// On n'oublie pas LA condition sous peine d'avoir quelques surprises. :p
                 if($fichier!="." AND $fichier!=".." AND !is_dir($fichier)
 $extension == $extension_choisie)
                 {
                 unlink($chemin);
                 }
         }
-closedir($repertoire); // On ferme !
+closedir($repertoire); 
 }
 
 suppression("tmp", "jpg");
 suppression("tmp", "mp4");
-
+*/
 $dateJour = '2017-05-20';
 $horaire1 = '13:00';
 $horaire2 = '17:00';
