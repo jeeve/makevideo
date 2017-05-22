@@ -24,14 +24,14 @@ while ($d < $d2) {
 	$imgSrc = "http://imagebankleryposes.appspot.com/dispimg?date=21-05-2017&time=";	
 	$imgSrc = $imgSrc . $d->format('H') . ':' . $d->format('i');
 	
-	copy($imgSrc, "tmp/P" . sprintf('%03d', $i) . ".jpg");
+	copy($imgSrc, "tmp/P" . sprintf('%04d', $i) . ".jpg");
 	
 	$i = $i + 1;
 	$d->add(new DateInterval('PT1M'));
 }
 
 $tempfile = 'tmp/timelapse.mp4';
-$shellline = "ffmpeg -f image2 -i tmp/P%3d.jpg -r 5 -vcodec mpeg4 -b 15000k " . $tempfile;
+$shellline = "ffmpeg -f image2 -i tmp/P%4d.jpg -r 5 -vcodec mpeg4 -b 15000k " . $tempfile;
 
 exec($shellline);
 
