@@ -51,7 +51,7 @@ $d2 = new DateTime($aa . '-' . $mm . '-' . $jj);
 $d2->SetTime(intval($h2), intval($m2));
 
 $i = 0;
-while ($d < $d2) {
+while ($d <= $d2) {
 	$imgSrc = "http://imagebankleryposes.appspot.com/dispimg?date=21-05-2017&time=";	
 	$imgSrc = $imgSrc . $d->format('H') . ':' . $d->format('i');
 	
