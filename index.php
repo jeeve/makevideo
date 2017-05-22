@@ -2,9 +2,6 @@
 
 set_time_limit(0);
 
-suppression("tmp", "jpg");
-suppression("tmp", "mp4");
-
 function suppression($dossier_traite , $extension_choisie)
 {
 // On ouvre le dossier.
@@ -31,6 +28,9 @@ $extension == $extension_choisie)
         }
 closedir($repertoire); // On ferme !
 }
+
+suppression("tmp", "jpg");
+suppression("tmp", "mp4");
 
 $dateJour = '2017-05-20';
 $horaire1 = '13:00';
