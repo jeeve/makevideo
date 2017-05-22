@@ -1,28 +1,37 @@
 <?php
 
 set_time_limit(0);
-/*
-function clear_dir($dir, $delete = false) {
-    $dossier = $dir;
-    $dir = opendir($dossier); 
-    while($file = readdir($dir)) { 
-        if(!in_array($file, array(".", ".."))){
-            if(is_dir("$dossier/$file")) {
-                clear_dir("$dossier/$file", true);
-            } else {
-                unlink("$dossier/$file");
-            }     
+
+function suppression($dossier_traite , $extension_choisie, $age_requis)
+{
+// On ouvre le dossier.
+$repertoire = opendir($dossier_traite);
+ 
+// On lance notre boucle qui lira les fichiers un par un.
+        while(false !== ($fichier = readdir($repertoire)))
+        {
+        // On met le chemin du fichier dans une variable simple
+        $chemin = $dossier_traite."/".$fichier;
+                
+                // Les variables qui contiennent toutes les infos nécessaires.
+                $infos = pathinfo($chemin);
+                $extension = $infos['extension'];
+ 
+                $age_fichier = time() - filemtime($chemin);
+                
+// On n'oublie pas LA condition sous peine d'avoir quelques surprises. :p
+                if($fichier!="." AND $fichier!=".." AND !is_dir($fichier)
+$extension == $extension_choisie /*AND $age_fichier > $age_requis*/)
+                {
+                unlink($chemin);
+                }
         }
-    } 
-    closedir($dir);
-     
-    if($delete == true) {
-        rmdir("$dossier/$file");
-    }
+closedir($repertoire); // On ferme !
 }
 
-clear_dir('tmp');
-*/
+suppression( "tmp", "jpg", "3600" );
+suppression( "tmp", "mp4", "3600" );
+
 $dateJour = '2017-05-20';
 $horaire1 = '13:00';
 $horaire2 = '17:00';
