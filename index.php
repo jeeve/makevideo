@@ -1,7 +1,13 @@
 <?php
 
+$imgSrc = "http://imagebankleryposes.appspot.com/dispimg?date=21-05-2017&time=10:00";
+copy($imgSrc, "tmp/P001");
+
+$imgSrc = "http://imagebankleryposes.appspot.com/dispimg?date=21-05-2017&time=10:01";
+copy($imgSrc, "tmp/P002");
+
 $tempfile = 'tmp/timelapse.mp4';
-$shellline = "ffmpeg -f image2 -i video/E%2d.jpg -r 24 -vcodec mpeg4 -b 15000k " . $tempfile;
+$shellline = "ffmpeg -f image2 -i tmp/P%3d.jpg -r 24 -vcodec mpeg4 -b 15000k " . $tempfile;
 
 exec($shellline);
 
