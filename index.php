@@ -4,9 +4,9 @@ $dateJour = '2017-05-20';
 $horaire1 = '13:00';
 $horaire2 = '14:00';
 
-$dateJour = $_GET['date'];
-$horaire1 = $_GET['heure-debut'];
-$horaire2 = $_GET['heure-fin'];
+//$dateJour = $_GET['date'];
+//$horaire1 = $_GET['heure-debut'];
+//$horaire2 = $_GET['heure-fin'];
 
 $jj = substr($dateJour, 8, 2);
 $mm = substr($dateJour, 5, 2);
@@ -35,7 +35,8 @@ while ($d < $d2) {
 }
 
 $tempfile = 'tmp/timelapse.mp4';
-$shellline = "ffmpeg -f image2 -i tmp/P%4d.jpg -r 5 -vcodec mpeg4 -b 15000k " . $tempfile;
+//$shellline = "ffmpeg -f image2 -i tmp/P%4d.jpg -r 5 -vcodec mpeg4 -b 15000k " . $tempfile;
+$shellline = "ffmpeg -f image2 -i tmp/P%4d.jpg -r 5 -vcodec libx264 -crf 25 " . $tempfile;
 
 exec($shellline);
 
