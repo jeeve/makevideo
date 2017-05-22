@@ -1,12 +1,16 @@
 <?php
 
-$dateJour = "21-05-2017";
-$horaire1 = "13:00";
-$horaire2 = "15:00";
+$dateJour = '2017-05-20';
+$horaire1 = '13:00';
+$horaire2 = '14:00';
 
-$jj = substr($dateJour, 0, 2);
-$mm = substr($dateJour, 3, 2);
-$aa = substr($dateJour, 6, 4);
+$dateJour = $_GET['date'];
+$horaire1 = $_GET['heure-debut'];
+$horaire2 = $_GET['heure-fin'];
+
+$jj = substr($dateJour, 8, 2);
+$mm = substr($dateJour, 5, 2);
+$aa = substr($dateJour, 0, 4);
 
 $h1 = substr($horaire1, 0, 2);
 $m1 = substr($horaire1, 3, 2);
