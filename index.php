@@ -1,7 +1,5 @@
 <?php
 
-header("Content-Type: video/mp4");
-
 $tempfile = 'tmp/timelapse.mp4';
 $shellline = "ffmpeg -f image2 -i video/E%2d.jpg -r 24 -vcodec mpeg4 -b 15000k " . $tempfile;
 
