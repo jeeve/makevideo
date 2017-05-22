@@ -31,7 +31,7 @@ while ($d < $d2) {
 }
 
 $tempfile = 'tmp/timelapse.mp4';
-$shellline = "ffmpeg -f image2 -i tmp/P%3d.jpg -r 24 -vcodec mpeg4 -b 15000k " . $tempfile;
+$shellline = "ffmpeg -f image2 -i tmp/P%3d.jpg -r 10 -vcodec mpeg4 -b 15000k " . $tempfile;
 
 exec($shellline);
 
