@@ -2,7 +2,7 @@
 
 $dateJour = "21-05-2017";
 $horaire1 = "13:00";
-$horaire2 = "13:50";
+$horaire2 = "15:00";
 
 $jj = substr($dateJour, 0, 2);
 $mm = substr($dateJour, 3, 2);
@@ -31,7 +31,7 @@ while ($d < $d2) {
 }
 
 $tempfile = 'tmp/timelapse.mp4';
-$shellline = "ffmpeg -f image2 -i tmp/P%3d.jpg -r 10 -vcodec mpeg4 -b 15000k " . $tempfile;
+$shellline = "ffmpeg -f image2 -i tmp/P%3d.jpg -r 5 -vcodec mpeg4 -b 15000k " . $tempfile;
 
 exec($shellline);
 
