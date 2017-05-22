@@ -1,10 +1,18 @@
 <?php
 
-$imgSrc = "http://imagebankleryposes.appspot.com/dispimg?date=21-05-2017&time=10:00";
-copy($imgSrc, "tmp/P001.jpg");
+$jour = "21-05-2017";
 
-$imgSrc = "http://imagebankleryposes.appspot.com/dispimg?date=21-05-2017&time=10:01";
-copy($imgSrc, "tmp/P002.jpg");
+$d = new DateTime('2017-05-21');
+$d->SetTime(10, 0);
+
+for ($i = 0; $i < 10; $i++) {
+	$imgSrc = "http://imagebankleryposes.appspot.com/dispimg?date=21-05-2017&time=";	
+	$imgSrc = $imgSrc . $d->format('H') . ':' . $d->format('i');
+	
+	copy($imgSrc, "tmp/P" . sprintf('%03d', $i) . ".jpg");
+	
+	$d->add(new DateInterval('PT1M'));
+}
 
 $tempfile = 'tmp/timelapse.mp4';
 $shellline = "ffmpeg -f image2 -i tmp/P%3d.jpg -r 24 -vcodec mpeg4 -b 15000k " . $tempfile;
