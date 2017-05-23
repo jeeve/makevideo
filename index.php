@@ -31,10 +31,10 @@ $repertoire = opendir($dossier_traite);
 					if ($contient != false) {
 						if (stripos($nomfichier, $contient)) {
 							unlink($chemin);	
+						}
 					}
 					else {
 						unlink($chemin);
-					}
 					}					
                 }
         }
