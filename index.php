@@ -1,7 +1,9 @@
 <?php
 
+$idSession = session_id();
+
 set_time_limit(0);
-/*
+
 function suppression($dossier_traite , $extension_choisie)
 {
 $repertoire = opendir($dossier_traite);
@@ -15,8 +17,7 @@ $repertoire = opendir($dossier_traite);
  
                 $age_fichier = time() - filemtime($chemin);
                 
-                if($fichier!="." AND $fichier!=".." AND !is_dir($fichier)
-$extension == $extension_choisie)
+                if($fichier!="." AND $fichier!=".." AND !is_dir($fichier) AND $extension == $extension_choisie)
                 {
                 unlink($chemin);
                 }
@@ -26,10 +27,10 @@ closedir($repertoire);
 
 suppression("tmp", "jpg");
 suppression("tmp", "mp4");
-*/
-$dateJour = '2017-05-20';
-$horaire1 = '13:00';
-$horaire2 = '17:00';
+
+$dateJour = '2017-04-16';
+$horaire1 = '11:00';
+$horaire2 = '16:00';
 
 $dateJour = $_GET['date'];
 $horaire1 = $_GET['heure-debut'];
@@ -55,7 +56,7 @@ while ($d <= $d2) {
 	$imgSrc = "http://imagebankleryposes.appspot.com/dispimg?date=" . $jj . "-" . $mm . "-" . $aa . "&time=";	
 	$imgSrc = $imgSrc . $d->format('H') . ':' . $d->format('i');
 	
-	copy($imgSrc, "tmp/P" . sprintf('%04d', $i) . ".jpg");
+	copy($imgSrc, "tmp/P-$idSession-" . sprintf('%04d', $i) . ".jpg");
 	
 	$i = $i + 1;
 	$d->add(new DateInterval('PT1M'));
@@ -63,7 +64,7 @@ while ($d <= $d2) {
 
 $tempfile = 'tmp/timelapse.mp4';
 //$shellline = "ffmpeg -f image2 -i tmp/P%4d.jpg -r 5 -vcodec mpeg4 -b 15000k " . $tempfile;
-$shellline = "ffmpeg -f image2 -i tmp/P%04d.jpg -r 25 -vcodec libx264 -crf 25 " . $tempfile;
+$shellline = "ffmpeg -f image2 -i tmp/P-$idSession-%04d.jpg -r 25 -vcodec libx264 -crf 25 " . $tempfile;
 
 exec($shellline);
 /*
