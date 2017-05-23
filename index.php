@@ -78,7 +78,7 @@ $shellline = "ffmpeg -f image2 -i tmp/P-$idSession-%04d.jpg -r 25 -vcodec libx26
 exec($shellline);
 
 echo '<a href="' . $tempfile . '">Timelapse lac de Léry-Poses du ' . $jj . '/' . $mm . '/' . $aa . ' entre ' . $h1 . ':' . $m1 . ' et ' . $h2 . ':' . $m2 . '</a>'; 
-echo '<br>Une image toute(s) les ' $incMinute . ' minutes';
+echo '<br>Une image toute(s) les ' . $incMinute . ' minutes';
 
 echo '<video controls="controls">';
 echo '<source src="' . $tempfile . '" type="video/mp4">';
