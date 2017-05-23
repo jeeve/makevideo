@@ -69,8 +69,8 @@ while ($d <= $d2) {
 	copy($imgSrc, "tmp/P-$idSession-" . sprintf('%04d', $i) . ".jpg");
 	
 	$i = $i + 1;
-		$d->add(new DateInterval('PT' . $incMinute . 'M'));
-	}
+	$d->add(new DateInterval('PT' . $incMinute . 'M'));
+	
 }
 
 $tempfile = "tmp/timelapse-$idSession.mp4";
