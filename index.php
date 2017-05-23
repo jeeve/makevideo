@@ -51,6 +51,10 @@ $d->SetTime(intval($h1), intval($m1));
 $d2 = new DateTime($aa . '-' . $mm . '-' . $jj);
 $d2->SetTime(intval($h2), intval($m2));
 
+$time1 = strtotime($dateJour . $horaire1 . ":00");
+$time2 = strtotime($dateJour . $horaire2 . ":00");
+$nbHeures = $time2 - $time1;
+
 $i = 0;
 while ($d <= $d2) {
 	$imgSrc = "http://imagebankleryposes.appspot.com/dispimg?date=" . $jj . "-" . $mm . "-" . $aa . "&time=";	
@@ -59,7 +63,12 @@ while ($d <= $d2) {
 	copy($imgSrc, "tmp/P-$idSession-" . sprintf('%04d', $i) . ".jpg");
 	
 	$i = $i + 1;
-	$d->add(new DateInterval('PT1M'));
+	if ($nbHeures < 4) {
+		$d->add(new DateInterval('PT1M'));
+	}
+	else {
+		$d->add(new DateInterval('PT2M'));
+	}
 }
 
 $tempfile = "tmp/timelapse-$idSession.mp4";
