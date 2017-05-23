@@ -46,7 +46,6 @@ if (!empty($_GET['r'])) {
 	$rate = $_GET['r'];
 }
 
-
 $jj = substr($dateJour, 8, 2);
 $mm = substr($dateJour, 5, 2);
 $aa = substr($dateJour, 0, 4);
