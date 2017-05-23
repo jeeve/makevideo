@@ -1,3 +1,11 @@
+<!DOCTYPE html>
+<html lang="fr">
+  <head>
+    <title>Timelapse lac de Léry-Poses</title>
+  </head>
+
+<body>  
+
 <?php
 
 $idSession = uniqid();
@@ -108,3 +116,6 @@ echo '</video>';
 
 suppression("tmp", "jpg", $idSession);
 ?>
+
+</body>
+</html>
