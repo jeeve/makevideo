@@ -25,8 +25,8 @@ $repertoire = opendir($dossier_traite);
 closedir($repertoire); 
 }
 
-//suppression("tmp", "jpg");
-//suppression("tmp", "mp4");
+suppression("tmp", "jpg");
+suppression("tmp", "mp4");
 
 $dateJour = '2017-04-16';
 $horaire1 = '11:00';
