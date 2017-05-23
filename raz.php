@@ -26,3 +26,12 @@ $repertoire = opendir($dossier_traite);
         }
 closedir($repertoire); 
 }
+
+
+suppression("tmp", "mp4");
+
+suppression("tmp", "jpg");
+
+echo "raz OK";
+
+?>
