@@ -53,9 +53,9 @@ $d2->SetTime(intval($h2), intval($m2));
 
 $time1 = strtotime($dateJour . $horaire1 . ":00");
 $time2 = strtotime($dateJour . $horaire2 . ":00");
-$nbHeures = $time2 - $time1;
-echo $time2-$time1;
-if ($d2-$d < (4*60)) {
+$nbSecondes = $time2 - $time1;
+
+if ($nbSecondes < (4*60*60)) {
 	$incMinute = '1';
 }
 else {
