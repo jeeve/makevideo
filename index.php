@@ -4,7 +4,7 @@ $idSession = uniqid();
 
 set_time_limit(0);
 
-function suppression($dossier_traite , $extension_choisie)
+function suppression($dossier_traite , $extension_choisie, $contient = false)
 {
 $repertoire = opendir($dossier_traite);
  
@@ -14,18 +14,25 @@ $repertoire = opendir($dossier_traite);
                 
                 $infos = pathinfo($chemin);
                 $extension = $infos['extension'];
+				$nomfichier = $infos['filename'];
  
                 $age_fichier = time() - filemtime($chemin);
                 
                 if($fichier!="." AND $fichier!=".." AND !is_dir($fichier) AND $extension == $extension_choisie)
                 {
-                unlink($chemin);
+					if ($contient != false) {
+						if (stripos($nomfichier, $contient)) {
+							unlink($chemin);	
+					}
+					else {
+						unlink($chemin);
+					}
+					}					
                 }
         }
 closedir($repertoire); 
 }
 
-suppression("tmp", "jpg");
 suppression("tmp", "mp4");
 
 $dateJour = '2017-04-16';
@@ -33,16 +40,16 @@ $horaire1 = '11:00';
 $horaire2 = '13:00';
 $rate = 25;
 
-if (!empty($_GET['date'])) {
+if (isset($_GET['date']) && !empty($_GET['date'])) {
 	$dateJour = $_GET['date'];
 }
-if (!empty($_GET['heure-debut'])) {
+if (isset($_GET['heure-debut']) && !empty($_GET['heure-debut'])) {
 	$horaire1 = $_GET['heure-debut'];
 }
-if (!empty($_GET['heure-fin'])) {
+if (isset($_GET['heure-fin']) && !empty($_GET['heure-fin'])) {
 	$horaire2 = $_GET['heure-fin'];
 }
-if (!empty($_GET['r'])) {
+if (isset($_GET['r']) && !empty($_GET['r'])) {
 	$rate = $_GET['r'];
 }
 
@@ -72,7 +79,7 @@ else {
 	$incMinute = '2';
 }
 
-if (!empty($_GET['inc'])) {
+if (isset($_GET['inc']) && !empty($_GET['inc'])) {
 	$incMinute = $_GET['inc'];
 }
 
@@ -99,4 +106,5 @@ echo '<video controls="controls">';
 echo '<source src="' . $tempfile . '" type="video/mp4">';
 echo '</video>';
 
+suppression("tmp", "jpg", $idSession);
 ?>
