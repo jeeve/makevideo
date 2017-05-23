@@ -31,10 +31,21 @@ suppression("tmp", "mp4");
 $dateJour = '2017-04-16';
 $horaire1 = '11:00';
 $horaire2 = '16:00';
+$rate = 25;
 
-$dateJour = $_GET['date'];
-$horaire1 = $_GET['heure-debut'];
-$horaire2 = $_GET['heure-fin'];
+if (!empty($_GET['date'])) {
+	$dateJour = $_GET['date'];
+}
+if (!empty($_GET['heure-debut'])) {
+	$horaire1 = $_GET['heure-debut'];
+}
+if (!empty($_GET['heure-fin'])) {
+	$horaire2 = $_GET['heure-fin'];
+}
+if (!empty($_GET['r'])) {
+	$rate = $_GET['r'];
+}
+
 
 $jj = substr($dateJour, 8, 2);
 $mm = substr($dateJour, 5, 2);
@@ -62,6 +73,10 @@ else {
 	$incMinute = '2';
 }
 
+if (!empty($_GET['inc'])) {
+	$incMinute = $_GET['inc'];
+}
+
 $i = 0;
 while ($d <= $d2) {
 	$imgSrc = "http://imagebankleryposes.appspot.com/dispimg?date=" . $jj . "-" . $mm . "-" . $aa . "&time=";	
@@ -74,7 +89,7 @@ while ($d <= $d2) {
 }
 
 $tempfile = "tmp/timelapse-$idSession.mp4";
-$shellline = "ffmpeg -f image2 -i tmp/P-$idSession-%04d.jpg -r 25 -vcodec libx264 -crf 25 " . $tempfile;
+$shellline = "ffmpeg -f image2 -i tmp/P-$idSession-%04d.jpg -r " . $rate . " -vcodec libx264 -crf 25 " . $tempfile;
 
 exec($shellline);
 
