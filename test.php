@@ -62,7 +62,7 @@ while ($d <= $d2) {
 	$d->add(new DateInterval('PT1M'));
 }
 
-$tempfile = 'tmp/timelapse.mp4';
+$tempfile = "tmp/timelapse-$idSession.mp4";
 //$shellline = "ffmpeg -f image2 -i tmp/P%4d.jpg -r 5 -vcodec mpeg4 -b 15000k " . $tempfile;
 $shellline = "ffmpeg -f image2 -i tmp/P-$idSession-%04d.jpg -r 25 -vcodec libx264 -crf 25 " . $tempfile;
 
