@@ -55,10 +55,10 @@ $time1 = strtotime($dateJour . $horaire1 . ":00");
 $time2 = strtotime($dateJour . $horaire2 . ":00");
 $nbHeures = $time2 - $time1;
 if ($nbHeures < 4) {
-	$incMinute = 1;
+	$incMinute = '1';
 }
 else {
-	$incMinute = 2;
+	$incMinute = '2';
 }
 
 $i = 0;
@@ -69,12 +69,10 @@ while ($d <= $d2) {
 	copy($imgSrc, "tmp/P-$idSession-" . sprintf('%04d', $i) . ".jpg");
 	
 	$i = $i + 1;
-	$d->add(new DateInterval('PT' . $incMinute . 'M'));
-	
+	$d->add(new DateInterval('PT' . $incMinute . 'M'));	
 }
 
 $tempfile = "tmp/timelapse-$idSession.mp4";
-//$shellline = "ffmpeg -f image2 -i tmp/P%4d.jpg -r 5 -vcodec mpeg4 -b 15000k " . $tempfile;
 $shellline = "ffmpeg -f image2 -i tmp/P-$idSession-%04d.jpg -r 25 -vcodec libx264 -crf 25 " . $tempfile;
 
 exec($shellline);
