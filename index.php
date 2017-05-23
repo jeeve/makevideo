@@ -1,6 +1,6 @@
 <?php
 
-$idSession = session_id();
+$idSession = "s"; //session_id();
 
 set_time_limit(0);
 
