@@ -29,7 +29,7 @@ $repertoire = opendir($dossier_traite);
                 if($fichier!="." AND $fichier!=".." AND !is_dir($fichier) AND $extension == $extension_choisie)
                 {
 					if ($contient != false) {
-						if (stripos($nomfichier, $contient)) {
+						if (stripos($nomfichier, $contient) != false) {
 							unlink($chemin);	
 						}
 					}
