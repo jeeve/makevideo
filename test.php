@@ -1,10 +1,18 @@
+<!DOCTYPE html>
+<html lang="fr">
+  <head>
+    <title>Timelapse lac de Léry-Poses</title>
+  </head>
+
+<body>  
+
 <?php
 
-$idSession = "t"; //session_id();
+$idSession = uniqid();
 
 set_time_limit(0);
 
-function suppression($dossier_traite , $extension_choisie)
+function suppression($dossier_traite , $extension_choisie, $contient = false)
 {
 $repertoire = opendir($dossier_traite);
  
@@ -14,28 +22,46 @@ $repertoire = opendir($dossier_traite);
                 
                 $infos = pathinfo($chemin);
                 $extension = $infos['extension'];
+				$nomfichier = $infos['filename'];
  
                 $age_fichier = time() - filemtime($chemin);
                 
                 if($fichier!="." AND $fichier!=".." AND !is_dir($fichier) AND $extension == $extension_choisie)
                 {
-                unlink($chemin);
+					if ($contient != false) {
+						if (stripos($nomfichier, $contient) != false) {
+							unlink($chemin);	
+						}
+					}
+					else {
+						unlink($chemin);
+					}					
                 }
         }
 closedir($repertoire); 
 }
 
-suppression("tmp", "jpg");
 suppression("tmp", "mp4");
 
 $dateJour = '2017-04-16';
-$horaire1 = '11:00';
-$horaire2 = '16:00';
-
-//$dateJour = $_GET['date'];
-//$horaire1 = $_GET['heure-debut'];
-//$horaire2 = $_GET['heure-fin'];
-
+$horaire1 = '10:30';
+$horaire2 = '16:30';
+$rate = 25;
+$incMinute = '1';
+/*
+if (isset($_GET['date']) && !empty($_GET['date'])) {
+	$dateJour = $_GET['date'];
+}
+if (isset($_GET['heure-debut']) && !empty($_GET['heure-debut'])) {
+	$horaire1 = $_GET['heure-debut'];
+}
+if (isset($_GET['heure-fin']) && !empty($_GET['heure-fin'])) {
+	$horaire2 = $_GET['heure-fin'];
+}
+if (isset($_GET['r']) && !empty($_GET['r'])) {
+	$rate = $_GET['r'];
+}
+*/
 $jj = substr($dateJour, 8, 2);
 $mm = substr($dateJour, 5, 2);
 $aa = substr($dateJour, 0, 4);
@@ -51,6 +77,21 @@ $d->SetTime(intval($h1), intval($m1));
 $d2 = new DateTime($aa . '-' . $mm . '-' . $jj);
 $d2->SetTime(intval($h2), intval($m2));
 
+$time1 = strtotime($dateJour . $horaire1 . ":00");
+$time2 = strtotime($dateJour . $horaire2 . ":00");
+$nbSecondes = $time2 - $time1;
+/*
+if ($nbSecondes < (4*60*60)) {
+	$incMinute = '1';
+}
+else {
+	$incMinute = '2';
+}
+
+if (isset($_GET['inc']) && !empty($_GET['inc'])) {
+	$incMinute = $_GET['inc'];
+}
+*/
 $i = 0;
 while ($d <= $d2) {
 	$imgSrc = "http://imagebankleryposes.appspot.com/dispimg?date=" . $jj . "-" . $mm . "-" . $aa . "&time=";	
@@ -59,19 +100,23 @@ while ($d <= $d2) {
 	copy($imgSrc, "tmp/P-$idSession-" . sprintf('%04d', $i) . ".jpg");
 	
 	$i = $i + 1;
-	$d->add(new DateInterval('PT1M'));
+	$d->add(new DateInterval('PT' . $incMinute . 'M'));	
 }
 
 $tempfile = "tmp/timelapse-$idSession.mp4";
-//$shellline = "ffmpeg -f image2 -i tmp/P%4d.jpg -r 5 -vcodec mpeg4 -b 15000k " . $tempfile;
-$shellline = "ffmpeg -f image2 -i tmp/P-$idSession-%04d.jpg -r 25 -vcodec libx264 -crf 25 " . $tempfile;
+$shellline = "ffmpeg -f image2 -i tmp/P-$idSession-%04d.jpg -r " . $rate . " -vcodec libx264 -crf 25 " . $tempfile;
 
 exec($shellline);
-/*
-echo '<a href="' . $tempfile . '">Timelapse lac de Léry-Poses</a>'; 
-*/
+
+echo '<a href="' . $tempfile . '">Timelapse lac de Léry-Poses du ' . $jj . '/' . $mm . '/' . $aa . ' entre ' . $h1 . ':' . $m1 . ' et ' . $h2 . ':' . $m2 . '</a>'; 
+echo '<br>Une image toutes les ' . $incMinute . ' minutes';
+
 echo '<video controls="controls">';
 echo '<source src="' . $tempfile . '" type="video/mp4">';
 echo '</video>';
 
+suppression("tmp", "jpg", $idSession);
 ?>
+
+</body>
+</html>
