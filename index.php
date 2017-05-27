@@ -46,7 +46,7 @@ suppression("tmp", "mp4");
 $dateJour = '2017-04-16';
 $horaire1 = '11:00';
 $horaire2 = '13:00';
-$rate = 25;
+$rate = 5;
 
 if (isset($_GET['date']) && !empty($_GET['date'])) {
 	$dateJour = $_GET['date'];
