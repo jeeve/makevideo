@@ -80,12 +80,12 @@ $time1 = strtotime($dateJour . $horaire1 . ":00");
 $time2 = strtotime($dateJour . $horaire2 . ":00");
 $nbSecondes = $time2 - $time1;
 
-//if ($nbSecondes < (4*60*60)) {
+if ($nbSecondes < (4*60*60)) {
 	$incMinute = '1';
-//}
-//else {
-//	$incMinute = '2';
-//}
+}
+else {
+	$incMinute = '2';
+}
 
 if (isset($_GET['inc']) && !empty($_GET['inc'])) {
 	$incMinute = $_GET['inc'];
