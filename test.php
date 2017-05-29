@@ -43,9 +43,9 @@ closedir($repertoire);
 
 suppression("tmp", "mp4");
 
-$dateJour = '2017-04-16';
-$horaire1 = '10:30';
-$horaire2 = '16:30';
+$dateJour = '2017-05-26';
+$horaire1 = '11:00';
+$horaire2 = '16:00';
 $rate = 25;
 $incMinute = '1';
 /*
