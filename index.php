@@ -99,7 +99,7 @@ while ($d <= $d2) {
 	$image = imagecreatefromjpeg($imgSrc);
 	if ($image != false) {
 		$noir = imagecolorallocate($image, 0, 0, 0);	
-		imagestring($image, 4, 15, 700, $jj . '/' . $mm . '/' . $aa . ' ' . $d->format('H') . ':' . $d->format('i'), $noir);
+		imagestring($image, 4, 15, 15, $jj . '/' . $mm . '/' . $aa . ' ' . $d->format('H') . ':' . $d->format('i'), $noir);
 		imagejpeg($image, "tmp/P-$idSession-" . sprintf('%04d', $i) . ".jpg");
 
 		$i = $i + 1;
