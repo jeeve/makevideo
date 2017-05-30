@@ -91,7 +91,7 @@ if (isset($_GET['inc']) && !empty($_GET['inc'])) {
 	$incMinute = $_GET['inc'];
 }
 
-$i = 0;
+$i = 1;
 while ($d <= $d2) {
 	$imgSrc = "http://imagebankleryposes.appspot.com/dispimg?date=" . $jj . "-" . $mm . "-" . $aa . "&time=";	
 	$imgSrc = $imgSrc . $d->format('H') . ':' . $d->format('i');
