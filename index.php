@@ -46,7 +46,7 @@ suppression("tmp", "mp4");
 $dateJour = '2017-04-16';
 $horaire1 = '11:00';
 $horaire2 = '13:00';
-$rate = 25;
+$rate = 5;
 
 if (isset($_GET['date']) && !empty($_GET['date'])) {
 	$dateJour = $_GET['date'];
@@ -84,7 +84,7 @@ if ($nbSecondes < (4*60*60)) {
 	$incMinute = '1';
 }
 else {
-	$incMinute = '2';
+	$incMinute = '1';
 }
 
 if (isset($_GET['inc']) && !empty($_GET['inc'])) {
@@ -96,9 +96,10 @@ while ($d <= $d2) {
 	$imgSrc = "http://imagebankleryposes.appspot.com/dispimg?date=" . $jj . "-" . $mm . "-" . $aa . "&time=";	
 	$imgSrc = $imgSrc . $d->format('H') . ':' . $d->format('i');
 	
-	copy($imgSrc, "tmp/P-$idSession-" . sprintf('%04d', $i) . ".jpg");
-	
-	$i = $i + 1;
+	if (copy($imgSrc, "tmp/P-$idSession-" . sprintf('%04d', $i) . ".jpg") == true) {
+		$i = $i + 1;
+	}
+
 	$d->add(new DateInterval('PT' . $incMinute . 'M'));	
 }
 

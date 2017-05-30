@@ -46,7 +46,7 @@ suppression("tmp", "mp4");
 $dateJour = '2017-05-26';
 $horaire1 = '11:00';
 $horaire2 = '16:00';
-$rate = 25;
+$rate = 5;
 $incMinute = '1';
 /*
 if (isset($_GET['date']) && !empty($_GET['date'])) {
@@ -97,10 +97,12 @@ while ($d <= $d2) {
 	$imgSrc = "http://imagebankleryposes.appspot.com/dispimg?date=" . $jj . "-" . $mm . "-" . $aa . "&time=";	
 	$imgSrc = $imgSrc . $d->format('H') . ':' . $d->format('i');
 	
-	copy($imgSrc, "tmp/P-$idSession-" . sprintf('%04d', $i) . ".jpg");
-	
-	$i = $i + 1;
-	$d->add(new DateInterval('PT' . $incMinute . 'M'));	
+
+		if (copy($imgSrc, "tmp/P-$idSession-" . sprintf('%04d', $i) . ".jpg") == true) {
+			$i = $i + 1;
+		}
+
+		$d->add(new DateInterval('PT' . $incMinute . 'M'));	
 }
 
 $tempfile = "tmp/timelapse-$idSession.mp4";
