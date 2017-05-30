@@ -46,7 +46,7 @@ suppression("tmp", "mp4");
 $dateJour = '2017-05-26';
 $horaire1 = '11:00';
 $horaire2 = '16:00';
-$rate = 5;
+$rate = 25;
 $incMinute = '1';
 /*
 if (isset($_GET['date']) && !empty($_GET['date'])) {
@@ -92,17 +92,21 @@ if (isset($_GET['inc']) && !empty($_GET['inc'])) {
 	$incMinute = $_GET['inc'];
 }
 */
-$i = 0;
+$i = 1;
 while ($d <= $d2) {
 	$imgSrc = "http://imagebankleryposes.appspot.com/dispimg?date=" . $jj . "-" . $mm . "-" . $aa . "&time=";	
 	$imgSrc = $imgSrc . $d->format('H') . ':' . $d->format('i');
-	
 
-		if (copy($imgSrc, "tmp/P-$idSession-" . sprintf('%04d', $i) . ".jpg") == true) {
-			$i = $i + 1;
-		}
+	$image = imagecreatefromjpeg($imgSrc);
+	if ($image != false) {
+		$noir = imagecolorallocate($image, 0, 0, 0);	
+		imagestring($image, 4, 15, 700, $jj . '/' . $mm . '/' . $aa . ' ' . $d->format('H') . ':' . $d->format('i'), $noir);
+		imagejpeg($image, "tmp/P-$idSession-" . sprintf('%04d', $i) . ".jpg");
 
-		$d->add(new DateInterval('PT' . $incMinute . 'M'));	
+		$i = $i + 1;
+	}
+
+	$d->add(new DateInterval('PT' . $incMinute . 'M'));	
 }
 
 $tempfile = "tmp/timelapse-$idSession.mp4";

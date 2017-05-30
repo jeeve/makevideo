@@ -95,8 +95,13 @@ $i = 1;
 while ($d <= $d2) {
 	$imgSrc = "http://imagebankleryposes.appspot.com/dispimg?date=" . $jj . "-" . $mm . "-" . $aa . "&time=";	
 	$imgSrc = $imgSrc . $d->format('H') . ':' . $d->format('i');
-	
-	if (copy($imgSrc, "tmp/P-$idSession-" . sprintf('%04d', $i) . ".jpg") == true) {
+
+	$image = imagecreatefromjpeg($imgSrc);
+	if ($image != false) {
+		$noir = imagecolorallocate($image, 0, 0, 0);	
+		imagestring($image, 4, 15, 700, $jj . '/' . $mm . '/' . $aa . ' ' . $d->format('H') . ':' . $d->format('i'), $noir);
+		imagejpeg($image, "tmp/P-$idSession-" . sprintf('%04d', $i) . ".jpg");
+
 		$i = $i + 1;
 	}
 
