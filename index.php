@@ -80,7 +80,7 @@ $time1 = strtotime($dateJour . $horaire1 . ":00");
 $time2 = strtotime($dateJour . $horaire2 . ":00");
 $nbSecondes = $time2 - $time1;
 
-if ($nbSecondes < (4*60*60)) {
+if ($nbSecondes < (3*60*60)) {
 	$incMinute = '1';
 }
 else {
