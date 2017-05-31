@@ -85,12 +85,13 @@ if ($nbSecondes < (3*60*60)) {
 }
 else {
 	if ($nbSecondes < (5*60*60)) {
-	$incMinute = '2';
+		$incMinute = '2';
+	} 
 }
 else {
 	$incMinute = '3';
 }
-}
+
 
 if (isset($_GET['inc']) && !empty($_GET['inc'])) {
 	$incMinute = $_GET['inc'];
